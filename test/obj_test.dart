@@ -42,21 +42,29 @@ class Disciplina {
  Disciplina(this.nome);
 }
 
+// Implementação do Item 5
+class Professor extends Pessoa {
+  // O professor não precisa do mixin Ano, apenas do nome de Pessoa
+  Professor(super.nome);
+}
+
 class Turma with Ano {
- Disciplina disciplina;
- final List<Aluno> _alunos = [];
+  Disciplina disciplina;
+  Professor professor; // Novo atributo
+  final List<Aluno> _alunos = [];
 
- Turma(this.disciplina, int ano) {
-   this.ano = ano;
- }
+  // Atualizando o construtor para receber o professor
+  Turma(this.disciplina, this.professor, int ano) {
+    this.ano = ano;
+  }
 
- void matricular(Aluno aluno) {
-   if (aluno.ano == ano) {
-     _alunos.add(aluno);
-   } else {
-     throw ArgumentError('Ano deve ser mesmo.');
-   }
- }
+  void matricular(Aluno aluno) {
+    if (aluno.ano == ano) {
+      _alunos.add(aluno);
+    } else {
+      throw ArgumentError('Ano deve ser o mesmo da turma.');
+    }
+  }
 }
 
 class Historico extends Turma {
@@ -101,5 +109,6 @@ void main() {
    } catch (error) {
      expect(error, isA<ArgumentError>());
    }
+
  });
 }
