@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,7 +30,16 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -66,9 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  
 
-   void _decrementCounter() {
+  void _decrementCounter() {
     setState(() {
       _counter--;
     });
@@ -76,8 +85,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-   
-  
     return Scaffold(
       appBar: AppBar(
         // TRY THIS: Try changing the color here to a specific color (to
@@ -105,18 +112,18 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-                   mainAxisAlignment: MainAxisAlignment.center,
-         children: <Widget>[
-           const Text('You have pushed the button this many times:'),
-           Text(
-             '$_counter',
-             style: Theme.of(context).textTheme.headlineMedium,
-           ),
-           TextButton(onPressed: _incrementCounter, child: Text('Increment')),
-           TextButton(onPressed: _decrementCounter, child: Text('Decrement')),
-         ],
-       ),
-     ),
-   );
- }
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text('You have pushed the button this many times:'),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            TextButton(onPressed: _incrementCounter, child: Text('Increment')),
+            TextButton(onPressed: _decrementCounter, child: Text('Decrement')),
+          ],
+        ),
+      ),
+    );
+  }
 }
